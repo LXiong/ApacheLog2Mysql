@@ -34,15 +34,15 @@ class ApacheLog2Mysql:
       data = []
       a = line.split('"')
       line = line.split()
-      data.append(line[0]) #ip 0
+      data.append(line[0])
       dataLine = line[3][1:line[3].index(":")] + ':' + line[3][line[3].index(":") + 1:]
-      data.append(dt.convert(dataLine)) #datetime 1
-      data.append(line[4][:-1]) #gmt 2
-      data.append(line[5][1:] + " " + line[6]) #urlreq 3
-      data.append(line[8]) #statuscode 4
-      data.append(line[9]) #bytestr 5
-      data.append(line[10][1:-1]) #referel 6
-      data.append(a[-2]) #osagent 7
+      data.append(dt.convert(dataLine))
+      data.append(line[4][:-1]) 
+      data.append(line[5][1:] + " " + line[6]) 
+      data.append(line[8]) 
+      data.append(line[9]) 
+      data.append(line[10][1:-1]) 
+      data.append(a[-2]) 
 
       try:
         cursor.execute("insert into logapache (ip, date, gmt, request, errorcode, bytes, referel, osa) values (%s, %s, %s, %s, %s, %s, %s, %s)", (data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7]))
